@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import sgms.ugc.enums.AccountStatus;
+import sgms.ugc.enums.Gender;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -23,7 +25,7 @@ public class User {
     @Column(nullable = false, length = 16)
     private String nickname;
 
-    @Column(length = 20)
+    @Column(length = 64)
     private String password;
 
     @Column(unique = true, nullable = false, length = 15)
@@ -35,8 +37,8 @@ public class User {
     @Column(columnDefinition = "DATE")
     private LocalDate birthday;
 
-    @Column(length = 1)
-    private Byte gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     @Column(length = 50)
     private String slogan;
@@ -47,8 +49,8 @@ public class User {
     @Column(length = 255)
     private String cover;
 
-    @Column(columnDefinition = "TINYINT DEFAULT 1")
-    private Byte status;
+    @Enumerated(EnumType.STRING)
+    private AccountStatus status;
 
     @Column(name = "created_at", updatable = false)
     @CreationTimestamp

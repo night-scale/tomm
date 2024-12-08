@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class PostCtrl {
 
     private final PostSvc postSvc;
+
     @Autowired
     public PostCtrl(PostSvc postSvc) {
         this.postSvc = postSvc;
@@ -26,7 +27,8 @@ public class PostCtrl {
     public ApiResponse<String> uploadPost(@RequestBody Post post) {
         //TODO 可以用sa token提取id了，下一步怎么快速进行userId和请求携带的userId的校验
         long id = StpUtil.getLoginIdAsLong();
-        if(post.getId() != id){
+
+        if(post.getAuthorId() != id){
             return ApiResponse.error(7, "post user don't match");
         }
 

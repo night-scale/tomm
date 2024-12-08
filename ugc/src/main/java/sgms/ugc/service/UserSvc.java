@@ -1,9 +1,9 @@
 package sgms.ugc.service;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import sgms.ugc.model.User;
 import sgms.ugc.repository.UserRepo;
 import org.springframework.stereotype.Service;
+import org.apache.commons.codec.digest.DigestUtils;
 
 @Service
 public class UserSvc {
@@ -31,17 +31,19 @@ public class UserSvc {
         }
     }
 
+
     public long passwordLogin(String identifier, String password) {
         try {
             User user = userRepo.findByTel(identifier);
             if (user == null) {
                 user = userRepo.findByEmail(identifier);
             }
-            if (user == null){
+            if (user == null) {
                 return -1;
             }
-            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            if(passwordEncoder.matches(password, user.getPassword())){
+
+            String hashedPassword = DigestUtils.sha256Hex(password);
+            if (hashedPassword.equals(user.getPassword())) {
                 return user.getId();
             }
             return -2;

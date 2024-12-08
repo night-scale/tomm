@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: izz
+  profiles:
+    active: test

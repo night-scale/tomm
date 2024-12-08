@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface PostLikeRepo extends JpaRepository<PostLike, Long> {
 
-    @Transactional
     @Modifying
-    @Query("DELETE FROM PostLike e WHERE e.userId = ?1 AND e.postId = ?2")
-    int deleteLike(Long col1, Long col2);
+    @Transactional  // 确保此操作在事务中执行
+    @Query("DELETE FROM post_likes e WHERE e.userId = ?1 AND e.postId = ?2")
+    int deleteLike(Long userId, Long postId);
 }

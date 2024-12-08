@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface VideoLikeRepo extends JpaRepository<VideoLike, Long> {
-    @Transactional
     @Modifying
-    @Query("DELETE FROM VideoLike e WHERE e.userId = ?1 AND e.videoId = ?2")
+    @Transactional  // 确保此操作在事务中执行
+    @Query("DELETE FROM video_likes e WHERE e.userId = ?1 AND e.videoId = ?2")
     int deleteLike(Long userId, Long videoId);
 }

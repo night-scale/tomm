@@ -1,6 +1,7 @@
 package sgms.ugc.controller;
 
 import cn.dev33.satoken.stp.StpUtil;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import sgms.ugc.dto.ApiResponse;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +21,11 @@ public class UserCtrl {
     }
 
     @PostMapping("/signup")
-    public ApiResponse<String> register(User u){
+    public ApiResponse<String> register(@RequestBody User u){
+        String rawPw =  u.getPassword();
+        String hashedPassword = DigestUtils.sha256Hex(rawPw);
+        u.setPassword(hashedPassword);
+
         boolean res = userSvc.add(u);
         if(!res){
             return ApiResponse.error(4, "failed");
@@ -33,6 +38,7 @@ public class UserCtrl {
         long res = userSvc.passwordLogin(loginReq.telOrEmail(), loginReq.password());
         if(res >= 0){
             StpUtil.login(res);//创建token并储存在cookie中
+            //TODO 成功登录返回信息
             return ApiResponse.ok();
         } else if(res == -1){
             return ApiResponse.error(5, "not exists");
