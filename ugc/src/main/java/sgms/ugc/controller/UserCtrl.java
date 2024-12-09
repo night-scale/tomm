@@ -22,6 +22,7 @@ public class UserCtrl {
 
     @PostMapping("/signup")
     public ApiResponse<String> register(@RequestBody User u){
+        //TODO 设置默认账号状态
         String rawPw =  u.getPassword();
         String hashedPassword = DigestUtils.sha256Hex(rawPw);
         u.setPassword(hashedPassword);

@@ -1,6 +1,5 @@
 package sgms.ugc.util;
 
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -30,20 +29,10 @@ public class GeoIpUtil {
             return "位置解析失败";
         }
     }
-    public static String extractClientIp(HttpServletRequest request) {
-        String ip = request.getHeader("X-Forwarded-For");
-        if (ip != null && !ip.isEmpty() && !"unknown".equalsIgnoreCase(ip)) {
-            return ip.split(",")[0].trim();
-        }
-        ip = request.getHeader("X-Real-IP");
-        if (ip != null && !ip.isEmpty() && !"unknown".equalsIgnoreCase(ip)) {
-            return ip;
-        }
-        return request.getRemoteAddr();
-    }
+
     private static JSONObject getJsonObject(String ip, String accessKey) throws IOException {
         String urlString = "http://api.ipstack.com/" + ip + "?access_key=" + accessKey;
-        URL url = null;
+        URL url;
         try {
             url = new URI(urlString).toURL();
         } catch (URISyntaxException e) {

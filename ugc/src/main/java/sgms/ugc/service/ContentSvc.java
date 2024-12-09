@@ -1,40 +1,37 @@
 package sgms.ugc.service;
 
-import sgms.ugc.model.Post;
-import sgms.ugc.model.PostLike;
-import sgms.ugc.repository.PostLikeRepo;
-import sgms.ugc.repository.PostRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sgms.ugc.model.Content;
+import sgms.ugc.model.Like;
+import sgms.ugc.repository.ContentRepo;
+import sgms.ugc.repository.LikeRepo;
 
 import java.util.List;
 
-
 @Service
-public class PostSvc {
-
-    private final PostRepo postRepo;
-    private final PostLikeRepo postLikeRepo;
-
+public class ContentSvc {
+    private final ContentRepo contentRepo;
+    private final LikeRepo likeRepo;
     @Autowired
-    public PostSvc(PostRepo postRepo, PostLikeRepo postLikeRepo) {
-        this.postRepo = postRepo;
-        this.postLikeRepo = postLikeRepo;
+    public ContentSvc(ContentRepo contentRepo, LikeRepo likeRepo) {
+        this.contentRepo = contentRepo;
+        this.likeRepo = likeRepo;
     }
 
-    public boolean storePost(Post post) {
+    public boolean storeContent(Content c) {
         try {
-            postRepo.save(post);
+            contentRepo.save(c);
             return true;
         } catch (Exception e) {
             return false;
         }
     }
 
-    public boolean deletePost(Long id) {
+    public boolean deleteContent(Long id) {
         try{
             // TODO jwt校验
-            postRepo.deleteById(id);
+            contentRepo.deleteById(id);
             return true;
         } catch (Exception e){
             return false;
@@ -43,32 +40,32 @@ public class PostSvc {
 
     public long count() {
         try{
-            return postRepo.count();
+            return contentRepo.count();
         } catch (Exception e) {
             return -1;
         }
     }
 
-    public List<Post> getAllById(List<Long> ids){
+    public List<Content> getAllById(List<Long> ids){
         try{
-            return postRepo.findAllByIdIn(ids);
+            return contentRepo.findAllByIdIn(ids);
         } catch (Exception e) {
             return null;
         }
     }
 
-    public boolean like(PostLike pl){
+    public boolean storeLike(Like l){
         try{
-            postLikeRepo.save(pl);
+            likeRepo.save(l);
             return true;
         }catch (Exception e){
             return false;
         }
     }
 
-    public boolean dislike(long userId, long postId){
+    public boolean deleteLike(long userId, long postId){
         try{
-            postLikeRepo.deleteLike(userId, postId);
+            likeRepo.deleteLike(userId, postId);
             return true;
         } catch (Exception e) {
             return false;

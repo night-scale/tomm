@@ -9,6 +9,7 @@ import sgms.ugc.enums.Gender;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -51,6 +52,21 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private AccountStatus status;
+
+    // 管理OneToMany关系
+    @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Collection> collections;
+
+    @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<CollectedItem> collectedItems;
+
+    @OneToMany(mappedBy = "authorId", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Content> contents;
+
+    @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Comment> comments;
+    /////////////////////////////////////
+
 
     @Column(name = "created_at", updatable = false)
     @CreationTimestamp
