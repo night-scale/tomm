@@ -1,15 +1,12 @@
 package sgms.ugc.controller;
 
-import cn.dev33.satoken.stp.StpUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import sgms.ugc.aspect.PosterIpAspect;
 import sgms.ugc.dto.ApiResponse;
 import sgms.ugc.dto.CommentReq;
 import sgms.ugc.model.Comment;
 import sgms.ugc.service.CommentSvc;
-import sgms.ugc.util.GeoIpUtil;
 
 @RestController
 @RequestMapping("/comment")

@@ -26,6 +26,7 @@ public class CommentSvc {
     private final CommentRepo commentRepo;
     private final UserRepo userRepo;
     private final ContentRepo contentRepo;
+
     public CommentSvc(CommentRepo commentRepo, UserRepo userRepo, ContentRepo contentRepo) {
         this.commentRepo = commentRepo;
         this.userRepo = userRepo;
@@ -62,7 +63,7 @@ public class CommentSvc {
             return ApiResponse.error(BusinessErrorCode.PARAM_NOT_VALID);
         }
         Long userId = StpUtil.getLoginIdAsLong();
-        int deletedCount = commentRepo.deleteByIdAndUserId(id, userId);
+        int deletedCount = commentRepo.deleteByIdAndCreator_Id(id, userId);
 
         if (deletedCount == 0) {
             return ApiResponse.error(BusinessErrorCode.NOT_OWNER);

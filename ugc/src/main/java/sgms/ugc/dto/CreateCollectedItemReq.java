@@ -1,6 +1,6 @@
 package sgms.ugc.dto;
 
-public record CollectedItemReq(
+public record CreateCollectedItemReq(
         Long contentId,
         Long collectionId
 ) { }

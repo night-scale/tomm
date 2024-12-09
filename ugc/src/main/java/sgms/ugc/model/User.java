@@ -1,6 +1,7 @@
 package sgms.ugc.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -26,31 +27,37 @@ public class User {
     @Column(nullable = false, length = 16)
     private String nickname;
 
-    @Column(length = 64)
+    @Column(length = 64, nullable = false)
     private String password;
+
+    @Size(max = 16)
+    @Column(nullable = false)
+    private String salt;
 
     @Column(unique = true, nullable = false, length = 15)
     private String tel;
 
-    @Column(length = 255)
+    @Column(length = 255, nullable = true)
     private String email;
 
-    @Column(columnDefinition = "DATE")
+    @Column(nullable = true)
     private LocalDate birthday;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Gender gender;
 
-    @Column(length = 50)
+    @Column(length = 50, nullable = true)
     private String slogan;
 
-    @Column(length = 255)
+    @Column(length = 255, nullable = true)
     private String avatar;
 
-    @Column(length = 255)
+    @Column(length = 255, nullable = true)
     private String cover;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private AccountStatus status;
 
     // 管理OneToMany关系
@@ -60,7 +67,7 @@ public class User {
     @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL, orphanRemoval = true)
     List<CollectedItem> collectedItems;
 
-    @OneToMany(mappedBy = "authorId", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Content> contents;
 
     @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL, orphanRemoval = true)

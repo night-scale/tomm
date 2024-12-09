@@ -15,7 +15,9 @@ public enum BusinessErrorCode {
     RESOURCE_NOT_EXIST(1003, "resource does not exist"),
     NOT_OWNER(1004, "you are not the owner"),
     CONTENT_NOT_EXIST(1005, "content does not exist"),
-    PARAM_NOT_VALID(1006, "Method Argument Not Valid");
+    PARAM_NOT_VALID(1006, "Method Argument Not Valid"),
+    INVALID_PASSWORD(1007, "wrong password");
+
     private final int code;
     private final String message;
 

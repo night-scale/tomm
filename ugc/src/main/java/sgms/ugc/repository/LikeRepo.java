@@ -9,8 +9,8 @@ import sgms.ugc.model.Like;
 
 @Repository
 public interface LikeRepo extends JpaRepository<Like, Long> {
+
     @Modifying
-    @Transactional  // 确保此操作在事务中执行
-    @Query("DELETE FROM Like e WHERE e.userId = ?1 AND e.contentId = ?2")
-    int deleteLike(Long userId, Long contentId);
+    @Transactional
+    int deleteLikeByContent_IdAndCreator_Id(Long content, Long creator);
 }

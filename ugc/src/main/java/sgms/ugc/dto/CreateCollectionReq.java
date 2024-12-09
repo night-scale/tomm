@@ -1,6 +1,6 @@
 package sgms.ugc.dto;
 
-public record CollectionReq(
+public record CreateCollectionReq(
         String name,
         String description,
         Boolean visibility

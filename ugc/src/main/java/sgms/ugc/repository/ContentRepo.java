@@ -10,4 +10,6 @@ import java.util.List;
 public interface ContentRepo extends JpaRepository<Content, Long> {
 
     List<Content> findAllByIdIn(List<Long> ids);
+
+    void deleteByIdAndAuthor_Id(Long id, Long author);
 }

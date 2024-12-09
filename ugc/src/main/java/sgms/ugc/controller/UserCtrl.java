@@ -7,6 +7,7 @@ import sgms.ugc.dto.ApiResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import sgms.ugc.dto.CreateUserWithTelPw;
 import sgms.ugc.dto.LoginReq;
 import sgms.ugc.model.User;
 import sgms.ugc.service.UserSvc;
@@ -20,34 +21,15 @@ public class UserCtrl {
         this.userSvc = userSvc;
     }
 
-    @PostMapping("/signup")
-    public ApiResponse<String> register(@RequestBody User u){
-        //TODO 设置默认账号状态
-        String rawPw =  u.getPassword();
-        String hashedPassword = DigestUtils.sha256Hex(rawPw);
-        u.setPassword(hashedPassword);
-
-        boolean res = userSvc.add(u);
-        if(!res){
-            return ApiResponse.error(4, "failed");
-        }
-        return ApiResponse.ok();
+    @PostMapping("/telpw")
+    public ApiResponse<String> register(@RequestBody CreateUserWithTelPw req){
+        return userSvc.createWithTelPassword(req);
     }
 
-    @PostMapping("/login")
-    public ApiResponse<String> login(@RequestBody LoginReq loginReq){
-        long res = userSvc.passwordLogin(loginReq.telOrEmail(), loginReq.password());
-        if(res >= 0){
-            StpUtil.login(res);//创建token并储存在cookie中
-            //TODO 成功登录返回信息
-            return ApiResponse.ok();
-        } else if(res == -1){
-            return ApiResponse.error(5, "not exists");
-        } else if (res == -2) {
-            return ApiResponse.error(6, "wrong password");
-        } else {
-            return ApiResponse.error(1, "internal database error");
-        }
+    //TODO 请求体中明文传输真的没问题吗
+    @PostMapping("/pwlogin")
+    public ApiResponse<String> passwordLogin(@RequestBody LoginReq loginReq){
+        return userSvc.passwordLogin(loginReq.telOrEmail(), loginReq.password());
     }
 
     @PostMapping("/logout")

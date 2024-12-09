@@ -14,9 +14,16 @@ public class Like {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id")
-    private Long userId;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User creator;
 
-    @Column(name = "content_id")
-    private Long contentId;
+    @ManyToOne
+    @JoinColumn(name = "content_id")
+    private Content content;
+
+    public Like(User user, Content content) {
+        this.creator = user;
+        this.content = content;
+    }
 }

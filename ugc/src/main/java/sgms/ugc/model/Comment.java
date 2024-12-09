@@ -13,9 +13,7 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = true)
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Comment parent;
+
 
     @Column(nullable = false)
     private String text;
@@ -26,6 +24,11 @@ public class Comment {
     @Column(nullable = false)
     private String location;
 
+    //////////////////////////
+    @JoinColumn(nullable = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Comment parent;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User creator;
@@ -33,6 +36,7 @@ public class Comment {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "content_id", nullable = false)
     private Content content;
+    /////////////////////////////
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;

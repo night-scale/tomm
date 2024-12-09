@@ -6,4 +6,6 @@ import sgms.ugc.model.CollectedItem;
 
 @Repository
 public interface CollectedItemRepo extends JpaRepository<CollectedItem, Long> {
+    int deleteByIdAndCreator_Id(Long id, Long userId);
+
 }

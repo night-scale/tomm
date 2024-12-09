@@ -37,8 +37,9 @@ public class Collection {
     private LocalDateTime createdAt;
 
     public Collection(){}
-    public Collection(Long id, String name, String description, Boolean visibility){
+    public Collection(User user, String name, String description, Boolean visibility){
         this.name = name;
+        this.creator = user;
         this.description = description;
         this.visibility = visibility;
     }

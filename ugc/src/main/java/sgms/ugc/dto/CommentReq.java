@@ -8,6 +8,7 @@ public record CommentReq(
 
         @NotNull
         String text,
+
         @NotNull
         Long contentId
 ) { }
