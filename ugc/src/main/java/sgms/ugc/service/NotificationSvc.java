@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import sgms.ugc.dto.ApiResponse;
+import sgms.ugc.dto.ClientNotification;
 
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -18,7 +19,6 @@ public class NotificationSvc {
 
     private final CopyOnWriteArrayList<SseEmitter> clients = new CopyOnWriteArrayList<>();
 
-    @Autowired
     public NotificationSvc(RedisTemplate<String, SseEmitter> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
@@ -44,7 +44,7 @@ public class NotificationSvc {
         return ApiResponse.ok(emitter);
     }
 
-    public boolean sendNotificationToUser(String userId, String message) {
+    public boolean sendNotificationToUser(String userId, ClientNotification message) {
         SseEmitter emitter = redisTemplate.opsForValue().get(userId);
         if (emitter != null) {
             try {
@@ -59,7 +59,7 @@ public class NotificationSvc {
         }
     }
 
-    public void sendNotificationToAll(String message) {
+    public void sendNotificationToAll(ClientNotification message) {
         for (SseEmitter emitter : clients) {
             try {
                 emitter.send(message, MediaType.APPLICATION_JSON);

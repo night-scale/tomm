@@ -14,11 +14,14 @@ import sgms.ugc.repository.UserRepo;
 @Service
 public class FollowSvc {
 
-    @Autowired
-    private UserRepo userRepo;
+    private final UserRepo userRepo;
 
-    @Autowired
-    private FollowRepo followRepo;
+    private final FollowRepo followRepo;
+
+    public FollowSvc(UserRepo userRepo, FollowRepo followRepo) {
+        this.userRepo = userRepo;
+        this.followRepo = followRepo;
+    }
 
     // 添加关注
     public ApiResponse<Object> followUser(Long toUserId) {

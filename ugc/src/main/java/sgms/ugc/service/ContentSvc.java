@@ -23,7 +23,7 @@ public class ContentSvc {
     private final ContentRepo contentRepo;
     private final LikeRepo likeRepo;
     private final UserRepo userRepo;
-    @Autowired
+
     public ContentSvc(ContentRepo contentRepo, LikeRepo likeRepo, UserRepo userRepo) {
         this.contentRepo = contentRepo;
         this.likeRepo = likeRepo;

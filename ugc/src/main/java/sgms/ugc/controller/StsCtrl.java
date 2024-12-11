@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/sts")
 public class StsCtrl {
-    @Autowired
-    private StsSvc stsSvc;
+    private final StsSvc stsSvc;
+
+    public StsCtrl(StsSvc stsSvc) {
+        this.stsSvc = stsSvc;
+    }
 
     @GetMapping("/stsToken")
     public ApiResponse<String> getStsToken() {

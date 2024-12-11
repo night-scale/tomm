@@ -18,7 +18,7 @@ public class ContentCtrl {
 
     private final ContentSvc contentSvc;
     private final CollectionSvc collectionSvc;
-    @Autowired
+
     public ContentCtrl(ContentSvc contentSvc, CollectionSvc collectionSvc) {
         this.contentSvc = contentSvc;
         this.collectionSvc = collectionSvc;

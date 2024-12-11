@@ -9,8 +9,11 @@ import sgms.ugc.service.FollowSvc;
 @RequestMapping("/api/follow")
 public class FollowCtrl {
 
-    @Autowired
-    private FollowSvc followSvc;
+    private final FollowSvc followSvc;
+
+    public FollowCtrl(FollowSvc followSvc) {
+        this.followSvc = followSvc;
+    }
 
     // 关注用户
     @PostMapping("/follow")
