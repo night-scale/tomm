@@ -9,7 +9,7 @@ import sgms.ugc.model.Comment;
 import sgms.ugc.service.CommentSvc;
 
 @RestController
-@RequestMapping("/comment")
+@RequestMapping("/api/comment")
 public class CommentCtrl {
     private final CommentSvc commentSvc;
 

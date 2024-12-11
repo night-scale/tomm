@@ -3,3 +3,8 @@ spring:
     name: izz
   profiles:
     active: test
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    timeout: 2000

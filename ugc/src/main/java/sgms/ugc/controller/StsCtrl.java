@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/sts")
+@RequestMapping("/api/sts")
 public class StsCtrl {
     @Autowired
     private StsSvc stsSvc;

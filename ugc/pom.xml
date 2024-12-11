@@ -30,6 +30,17 @@
 		<java.version>21</java.version>
 	</properties>
 	<dependencies>
+		<!-- Redis组件 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<!-- Spring集成Redis组件 -->
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-redis</artifactId>
+		</dependency>
+
 		<!--	加密库使用 	bouncycastle-->
 		<dependency>
 			<groupId>org.bouncycastle</groupId>

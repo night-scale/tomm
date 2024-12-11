@@ -5,7 +5,7 @@ import sgms.ugc.enums.Gender;
 
 import java.time.LocalDate;
 
-public record CreateUserWithTelPw(
+public record CreateUserWithTelPwReq(
         @NotNull
         String tel,
         @NotNull

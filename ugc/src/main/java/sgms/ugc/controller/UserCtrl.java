@@ -1,19 +1,17 @@
 package sgms.ugc.controller;
 
 import cn.dev33.satoken.stp.StpUtil;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import sgms.ugc.dto.ApiResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import sgms.ugc.dto.CreateUserWithTelPw;
+import sgms.ugc.dto.CreateUserWithTelPwReq;
 import sgms.ugc.dto.LoginReq;
-import sgms.ugc.model.User;
 import sgms.ugc.service.UserSvc;
 
 @RestController
-@RequestMapping("account")
+@RequestMapping("/api/account")
 public class UserCtrl {
     private final UserSvc userSvc;
 
@@ -22,7 +20,7 @@ public class UserCtrl {
     }
 
     @PostMapping("/telpw")
-    public ApiResponse<String> register(@RequestBody CreateUserWithTelPw req){
+    public ApiResponse<String> register(@RequestBody CreateUserWithTelPwReq req){
         return userSvc.createWithTelPassword(req);
     }
 

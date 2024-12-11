@@ -13,7 +13,7 @@ import sgms.ugc.service.ContentSvc;
 import sgms.ugc.util.AesUtil;
 
 @RestController
-@RequestMapping("/content")
+@RequestMapping("/api/content")
 public class ContentCtrl {
 
     private final ContentSvc contentSvc;

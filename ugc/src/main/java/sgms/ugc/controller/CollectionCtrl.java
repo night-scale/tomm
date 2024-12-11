@@ -10,7 +10,7 @@ import sgms.ugc.dto.CreateCollectionReq;
 import sgms.ugc.service.CollectionSvc;
 
 @RestController
-@RequestMapping("/collect")
+@RequestMapping("/api/collect")
 public class CollectionCtrl {
     private final CollectionSvc collectionSvc;
 

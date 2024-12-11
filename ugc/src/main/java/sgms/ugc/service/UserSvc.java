@@ -3,12 +3,11 @@ package sgms.ugc.service;
 import cn.dev33.satoken.stp.StpUtil;
 import org.springframework.transaction.annotation.Transactional;
 import sgms.ugc.dto.ApiResponse;
-import sgms.ugc.dto.CreateUserWithTelPw;
+import sgms.ugc.dto.CreateUserWithTelPwReq;
 import sgms.ugc.enums.BusinessErrorCode;
 import sgms.ugc.model.User;
 import sgms.ugc.repository.UserRepo;
 import org.springframework.stereotype.Service;
-import org.apache.commons.codec.digest.DigestUtils;
 
 import sgms.ugc.enums.AccountStatus;
 import sgms.ugc.util.PasswordUtil;
@@ -23,7 +22,7 @@ public class UserSvc {
 
 
     @Transactional
-    public ApiResponse<String> createWithTelPassword(CreateUserWithTelPw req) {
+    public ApiResponse<String> createWithTelPassword(CreateUserWithTelPwReq req) {
         String randomUsername = generateRandomUsername();
         String randomNickname = generateRandomNickname();
 
