@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:tomm4android/widgets/top_buttons.dart';
-import 'package:tomm4android/widgets/video_feed.dart';
+import 'package:tomm4android/widgets/header_buttons.dart';
+import 'package:tomm4android/widgets/transparent_sliding_nav_bar.dart';
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('首页'),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: Stack(
         children: [
-          TopButtons(), // 顶部浮动按钮区域
-          Expanded(
-            child: VideoFeed(), // 视频展示区域
-          ),
+          SafeArea(child: TransparentSlidingNavbar()),
+
+          SafeArea(child: HeaderButtons()),
         ],
       ),
     );
