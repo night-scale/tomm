@@ -5,135 +5,157 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('我的'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.settings),
-            onPressed: () {
-              // 跳转到设置页面
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SettingsScreen()),
-              );
-            },
-          ),
-        ],
+        title: Text('个人信息'),
+        centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 用户信息
-            _buildProfileInfo(),
-            SizedBox(height: 20),
-            // 常用操作按钮
-            _buildActionButtons(),
-            SizedBox(height: 20),
-            // 其他功能（例如历史记录、收藏等）
-            _buildOtherFeatures(),
+            // 顶部背景图
+            Stack(
+              children: [
+                Container(
+                  height: 200,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/background.jpg'), // 替换为你的背景图路径
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 16,
+                  left: 16,
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 40,
+                        backgroundImage: AssetImage('assets/avatar.jpg'), // 替换为你的头像路径
+                      ),
+                      SizedBox(width: 16),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '昵称',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            '个性签名',
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 16),
+
+            // 统计数据区域
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _buildStatItem('获赞', '123'),
+                  _buildStatItem('收藏', '45'),
+                  _buildStatItem('关注', '67'),
+                  _buildStatItem('被关注', '89'),
+                ],
+              ),
+            ),
+            SizedBox(height: 16),
+
+            // 按钮区域
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      // TODO: 跳转到设置页面
+                    },
+                    child: Text('设置'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      // TODO: 跳转到编辑信息页面
+                    },
+                    child: Text('编辑信息'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      // TODO: 跳转到创作中心页面
+                    },
+                    child: Text('创作中心'),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 16),
+
+            // 收藏历史或其他内容区域
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '收藏历史',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Container(
+                    height: 100,
+                    color: Colors.grey[200],
+                    child: Center(
+                      child: Text('TODO: 收藏历史列表'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  // 用户信息部分
-  Widget _buildProfileInfo() {
-    return Row(
-      children: [
-        CircleAvatar(
-          radius: 50,
-          backgroundImage: AssetImage('assets/images/profile_picture.jpg'), // 用户头像图片
-        ),
-        SizedBox(width: 20),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              '用户名', // 可以通过API获取用户名
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              '@username', // 用户的昵称或账号
-              style: TextStyle(fontSize: 16, color: Colors.grey),
-            ),
-            SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                // 编辑个人资料功能
-              },
-              child: Text('编辑资料'),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  // 常用操作按钮
-  Widget _buildActionButtons() {
+  Widget _buildStatItem(String label, String count) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ListTile(
-          leading: Icon(Icons.favorite_border),
-          title: Text('收藏'),
-          onTap: () {
-            // 跳转到收藏页面
-          },
+        Text(
+          count,
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        ListTile(
-          leading: Icon(Icons.lock),
-          title: Text('隐私设置'),
-          onTap: () {
-            // 跳转到隐私设置页面
-          },
-        ),
-        ListTile(
-          leading: Icon(Icons.notifications),
-          title: Text('通知设置'),
-          onTap: () {
-            // 跳转到通知设置页面
-          },
+        SizedBox(height: 4),
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 14,
+            color: Colors.grey,
+          ),
         ),
       ],
-    );
-  }
-
-  // 其他功能部分（例如历史记录、好友管理等）
-  Widget _buildOtherFeatures() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ListTile(
-          leading: Icon(Icons.history),
-          title: Text('观看历史'),
-          onTap: () {
-            // 跳转到观看历史页面
-          },
-        ),
-        ListTile(
-          leading: Icon(Icons.people),
-          title: Text('好友管理'),
-          onTap: () {
-            // 跳转到好友管理页面
-          },
-        ),
-      ],
-    );
-  }
-}
-
-// 设置页面的占位符
-class SettingsScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('设置')),
-      body: Center(
-        child: Text('这里是设置页面'),
-      ),
     );
   }
 }
