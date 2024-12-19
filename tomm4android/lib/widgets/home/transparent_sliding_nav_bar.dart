@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tomm4android/widgets/contents/grid_content.dart';
-import 'package:tomm4android/widgets/contents/video_content.dart';
+import 'package:tomm4android/widgets/home/grid_content.dart';
+import 'package:tomm4android/widgets/home/video_content.dart';
 
 class TransparentSlidingNavbar extends StatefulWidget {
   @override
-  _TransparentSlidingNavbarState createState() => _TransparentSlidingNavbarState();
+  _TransparentSlidingNavbarState createState() =>
+      _TransparentSlidingNavbarState();
 }
 
 class _TransparentSlidingNavbarState extends State<TransparentSlidingNavbar>
@@ -29,22 +30,19 @@ class _TransparentSlidingNavbarState extends State<TransparentSlidingNavbar>
     return Scaffold(
       body: Stack(
         children: [
-          // TabBarView 显示内容
           TabBarView(
             controller: _tabController,
             children: [
-              // 示例内容
-              GridContent(title: 'form'), // 这里是你的视频内容组件
-              VideoPage(), // 示例页面
-              Container(color: Colors.green), // 示例页面
+              GridContent(title: 'form'),
+              VideoPage(),
+              Container(color: Colors.green),
             ],
           ),
-          // 浮动在上方的 TabBar
           SafeArea(
             child: Align(
-              alignment: Alignment.topCenter, // 浮动在顶部
+              alignment: Alignment.topCenter,
               child: Container(
-                color: Colors.transparent, // 透明背景
+                color: Colors.transparent,
                 child: TabBar(
                   controller: _tabController,
                   indicatorColor: Colors.red,
@@ -52,6 +50,7 @@ class _TransparentSlidingNavbarState extends State<TransparentSlidingNavbar>
                   unselectedLabelColor: Colors.grey.shade300,
                   labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   unselectedLabelStyle: TextStyle(fontSize: 14),
+                  labelPadding: const EdgeInsets.symmetric(horizontal: 6.0), // TODO 更小的按钮间距
                   tabs: [
                     Tab(text: '关注'),
                     Tab(text: '推荐'),
@@ -66,4 +65,3 @@ class _TransparentSlidingNavbarState extends State<TransparentSlidingNavbar>
     );
   }
 }
-

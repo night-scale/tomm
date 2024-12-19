@@ -7,8 +7,8 @@ class FloatingButtons extends StatelessWidget {
       onPressed: () {
         // 处理发布按钮的点击事件
       },
-      child: Icon(Icons.add),
       tooltip: '发布',
+      child: Icon(Icons.add),
     );
   }
 }

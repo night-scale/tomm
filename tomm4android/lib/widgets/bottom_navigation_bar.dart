@@ -73,9 +73,12 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   Widget _buildMiddleButton() {
     return GestureDetector(
       onTap: () {
-        setState(() {
-          _currentIndex = 2; // 切换到 CreationScreen
-        });
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CreationScreen(),
+          ),
+        );
       },
       child: Container(
         height: 36,
