@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tomm4android/screens/creation_screen.dart';
+import 'package:tomm4android/screens/media_select_screen.dart';
 import 'package:tomm4android/screens/discover_screen.dart';
 import 'package:tomm4android/screens/home_screen.dart';
 import 'package:tomm4android/screens/message_screen.dart';
@@ -17,7 +17,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   final List<Widget> _screens = [
     HomeScreen(),
     DiscoverScreen(),
-    CreationScreen(),
+    MediaSelectionScreen(),
     MessageScreen(),
     ProfileScreen(),
   ];
@@ -76,7 +76,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => CreationScreen(),
+            builder: (context) => MediaSelectionScreen(),
           ),
         );
       },

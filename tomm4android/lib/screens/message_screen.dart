@@ -105,7 +105,7 @@ class MessageScreen extends StatelessWidget {
 class MessageDetailScreen extends StatelessWidget {
   final Message message;
 
-  const MessageDetailScreen({Key? key, required this.message}) : super(key: key);
+  const MessageDetailScreen({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -169,7 +169,7 @@ class MessageDetailScreen extends StatelessWidget {
 class ListDetailScreen extends StatelessWidget {
   final String title;
 
-  const ListDetailScreen({Key? key, required this.title}) : super(key: key);
+  const ListDetailScreen({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -213,7 +213,7 @@ class ListDetailScreen extends StatelessWidget {
 class DetailItemScreen extends StatelessWidget {
   final String item;
 
-  const DetailItemScreen({Key? key, required this.item}) : super(key: key);
+  const DetailItemScreen({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {

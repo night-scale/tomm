@@ -3,7 +3,7 @@ import 'package:tomm4android/widgets/header_buttons.dart';
 import 'package:tomm4android/widgets/home/transparent_sliding_nav_bar.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,6 @@ class HomeScreen extends StatelessWidget {
       body: Stack(
         children: [
           SafeArea(child: TransparentSlidingNavbar()),
-
           SafeArea(child: HeaderButtons()),
         ],
       ),

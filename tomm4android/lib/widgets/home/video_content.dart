@@ -30,7 +30,7 @@ class VideoPage extends StatelessWidget {
 class VideoPlayerScreen extends StatefulWidget {
   final String url;
 
-  const VideoPlayerScreen({Key? key, required this.url}) : super(key: key);
+  const VideoPlayerScreen({super.key, required this.url});
 
   @override
   _VideoPlayerScreenState createState() => _VideoPlayerScreenState();

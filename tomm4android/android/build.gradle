@@ -1,16 +1,27 @@
-allprojects {
+buildscript {
+    ext.kotlin_version = '2.0.0' // 修改为更稳定的 Kotlin 版本
     repositories {
         google()
         mavenCentral()
     }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.0.2' // 确保使用兼容的 Gradle 插件版本
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
 }
 
-rootProject.buildDir = "../build"
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        // jcenter() // 如果依赖无法解析，可以取消注释
+    }
+}
+
+rootProject.buildDir = "../build/${rootProject.name}" // 确保构建目录唯一，避免冲突
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
-    project.evaluationDependsOn(":app")
+    // project.evaluationDependsOn(":app") // 不建议强制依赖 :app
 }
 
 tasks.register("clean", Delete) {
