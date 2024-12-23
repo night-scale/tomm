@@ -2,6 +2,8 @@
     "java.compile.nullAnalysis.mode": "disabled",
     "java.configuration.updateBuildConfiguration": "interactive",
     "cSpell.words": [
-        "tomm"
-    ]
+        "tomm",
+        "wechat"
+    ],
+    "cmake.sourceDirectory": "D:/dev/tomm/tomm4android/windows"
 }
